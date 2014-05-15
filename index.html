@@ -1,0 +1,58 @@
+<!doctype html>
+<title>Glass</title>
+
+<img src="background.png">
+<div class="glass"></div>
+
+<style>
+html {
+	overflow: hidden;
+	cursor: none;
+}
+
+body:before, .glass {
+	background: url(background.png) 50% calc(50% + 150px);
+}
+
+body:before {
+	content: '';
+
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	right: -10px;
+	bottom: -10px;
+
+	display: block;
+
+	-webkit-filter: blur(5px);
+	filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="blur"><feGaussianBlur stdDeviation="5"/></filter></svg>#blur');
+	filter: blur(5px);
+}
+
+.glass {
+	position: absolute;
+	top: -200px;
+
+	width: 200px;
+	height: 200px;
+	margin: -100px;
+
+	overflow: hidden;
+
+	background-attachment: fixed;
+
+	box-shadow: 0 0 5px #000, 0 0 80px -20px #fff inset;
+
+	border-radius: 100px;
+}
+</style>
+
+<script>
+	var spyglass = document.querySelector('.glass');
+
+	window.onmousemove = function(event) {
+		spyglass.style.top = event.clientY + 'px';
+		spyglass.style.left = event.clientX + 'px';
+	};
+</script>
